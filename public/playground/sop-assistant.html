@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>SOP Assistant — Playground demo</title>
+    <style>
+      :root {
+        --bg: #f4f4f7;
+        --surface: #fff;
+        --text: #15161c;
+        --muted: #6b6f7b;
+        --border: #e5e5eb;
+        --accent: #6d5bff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: 'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      .demo-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 20px;
+        background: #0e0f14;
+        color: #fff;
+        font-size: 13px;
+      }
+      .demo-bar a { color: #fff; text-decoration: none; font-weight: 600; }
+      .demo-bar a:hover { text-decoration: underline; }
+      .demo-pill {
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        font-weight: 500;
+      }
+      .console-head {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 24px;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+      }
+      .console-logo {
+        width: 30px; height: 30px; border-radius: 8px;
+        background: var(--accent); color: #fff;
+        display: grid; place-items: center; font-weight: 800; font-size: 14px;
+      }
+      .console-head strong { font-size: 15px; }
+      .console-head span { color: var(--muted); font-size: 13px; }
+      main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 120px; }
+      .crumbs { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+      .title-card {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 28px;
+        padding: 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+      }
+      .poster {
+        aspect-ratio: 2 / 3;
+        border-radius: 12px;
+        background: linear-gradient(160deg, #2b5cff, #9b6bff 55%, #ffb347);
+        display: flex; align-items: flex-end; padding: 14px;
+        color: #fff; font-weight: 800; font-size: 20px; line-height: 1.1;
+      }
+      h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: -0.02em; }
+      .sub { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+      .fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .field { padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; }
+      .field dt { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px; }
+      .field dd { margin: 0; font-size: 14px; font-weight: 600; }
+      .checks { margin-top: 20px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+      .check { padding: 14px; border-radius: 12px; background: var(--bg); font-size: 13px; }
+      .check b { display: block; font-size: 14px; margin-bottom: 4px; }
+      .s-pass { color: #1f8a55; } .s-fail { color: #d63d42; } .s-todo { color: var(--muted); }
+      .hint {
+        margin-top: 20px; padding: 14px 16px; border-radius: 12px;
+        background: color-mix(in srgb, var(--accent) 8%, #fff);
+        border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+        font-size: 14px; line-height: 1.5;
+      }
+      @media (max-width: 760px) {
+        .title-card { grid-template-columns: 1fr; }
+        .poster { max-width: 180px; }
+        .fields, .checks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+    </style>
+    <script>
+      // Shims for the userscript manager APIs the assistant expects.
+      window.GM_addStyle = function (css) {
+        const el = document.createElement('style');
+        el.textContent = css;
+        document.head.appendChild(el);
+      };
+      window.GM_info = { script: { name: 'SOP Assistant', version: '1.5.2-demo' } };
+      window.SOP_DEMO_AUTO_OPEN = true;
+    </script>
+  </head>
+  <body>
+    <div class="demo-bar">
+      <a href="/playground">← Back to Playground</a>
+      <span class="demo-pill">Live demo · dummy SOP data</span>
+    </div>
+
+    <header class="console-head">
+      <div class="console-logo">C</div>
+      <strong>Catalog Console</strong>
+      <span>Title detail</span>
+    </header>
+
+    <main>
+      <div class="crumbs">Titles / Series / The Long Road / Season 1 / Episode 4</div>
+      <section class="title-card">
+        <div class="poster">The Long Road</div>
+        <div>
+          <h1>The Long Road — S1 E4 “Crossing”</h1>
+          <p class="sub">Title ID TL-204-0417 · Go-live 03/14/2026 · Drama</p>
+          <dl class="fields">
+            <div class="field"><dt>Locales</dt><dd>en-us, de-de, ja-jp</dd></div>
+            <div class="field"><dt>Maturity rating</dt><dd>Pending</dd></div>
+            <div class="field"><dt>Runtime</dt><dd>47 min</dd></div>
+            <div class="field"><dt>Audio</dt><dd>English, German</dd></div>
+            <div class="field"><dt>Subtitles</dt><dd>EN, DE, JA</dd></div>
+            <div class="field"><dt>Partner</dt><dd>Northlight Studios</dd></div>
+          </dl>
+          <div class="checks">
+            <div class="check"><b>Offers</b><span class="s-pass">Pass</span></div>
+            <div class="check"><b>Metadata</b><span class="s-fail">Fail · rating</span></div>
+            <div class="check"><b>Artwork</b><span class="s-todo">To do</span></div>
+            <div class="check"><b>Playback</b><span class="s-todo">To do</span></div>
+          </div>
+          <p class="hint">
+            The SOP Assistant opens beside this page. Try <b>“rating missing”</b>,
+            <b>“subtitle out of sync”</b> or <b>“poster ratio”</b>, or start typing to see
+            suggestions. Close it and use the <b>SOP</b> button to reopen.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/playground/sop-assistant.js"></script>
+  </body>
+</html>
