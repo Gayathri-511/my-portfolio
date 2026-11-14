@@ -1,15 +1,25 @@
+import { Link } from 'react-router-dom';
+import { NAV_LINKS, SOCIAL_LINKS, EMAIL_COMPOSE_URL } from '../data/site';
+
 function Footer() {
   return (
     <footer className="footer" id="contact">
-      <span>© {new Date().getFullYear()} Gayathri RK · QA &amp; Business Analyst</span>
+      <nav className="footer-nav" aria-label="Footer">
+        {NAV_LINKS.map((l) => (
+          <Link to={l.to} key={l.label}>
+            {l.label}
+          </Link>
+        ))}
+      </nav>
       <span className="footer-links">
-        <a href="https://www.linkedin.com/in/rk-gayathri/" target="_blank" rel="noreferrer">
-          LinkedIn ↗
+        {SOCIAL_LINKS.map((l) => (
+          <a href={l.href} target="_blank" rel="noreferrer" key={l.label}>
+            {l.label} ↗
+          </a>
+        ))}
+        <a href={EMAIL_COMPOSE_URL} target="_blank" rel="noreferrer">
+          Email ↗
         </a>
-        <a href="https://medium.com/@gayathrirk" target="_blank" rel="noreferrer">
-          Medium ↗
-        </a>
-        <a href="mailto:rkgayathri18@gmail.com">Email ↗</a>
       </span>
     </footer>
   );

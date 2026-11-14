@@ -5,14 +5,23 @@ function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      // Wait a frame so the target page has rendered before scrolling to the anchor.
-      requestAnimationFrame(() => {
-        document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth' });
-      });
-      return;
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return undefined;
     }
-    window.scrollTo(0, 0);
+
+    // Jump (not smooth-scroll) to the anchor once fonts have loaded, so text
+    // reflow on a long page can't leave us above or below the target section.
+    let cancelled = false;
+    const id = decodeURIComponent(hash.slice(1));
+    const jump = () => {
+      if (cancelled) return;
+      document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    };
+    (document.fonts?.ready ?? Promise.resolve()).then(() => requestAnimationFrame(jump));
+    return () => {
+      cancelled = true;
+    };
   }, [pathname, hash]);
 
   return null;

@@ -10,6 +10,9 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Playground from './pages/Playground';
+import Skills from './pages/Skills';
+import BackToTop from './components/BackToTop';
+import Reveal from './components/Reveal';
 import './App.css';
 
 function Home() {
@@ -36,9 +39,12 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/work/:slug" element={<CaseStudy />} />
+        <Route path="/skills" element={<Skills />} />
         <Route path="/playground" element={<Playground />} />
         <Route path="/playground/:slug" element={<CaseStudy />} />
       </Routes>
+      <BackToTop />
+      <Reveal />
     </div>
   );
 }

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { NAV_LINKS, RESUME_URL } from '../data/site';
 
 function DownloadIcon() {
   return (
@@ -17,19 +18,10 @@ function DownloadIcon() {
 
 function Nav() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   const close = () => setOpen(false);
 
   return (
-    <header className={`nav${scrolled ? ' is-scrolled' : ''}`}>
+    <header className="nav">
       <Link className="logo" to="/" onClick={close}>
         <span className="logo-mark" aria-hidden="true">G</span>
         <span>
@@ -38,25 +30,24 @@ function Nav() {
       </Link>
 
       <nav className={`nav-links ${open ? 'is-open' : ''}`}>
-        <Link to="/#work" onClick={close}>
-          Work
-        </Link>
-        <NavLink to="/about" onClick={close}>
-          About
-        </NavLink>
-        <NavLink to="/playground" onClick={close}>
-          Playground
-        </NavLink>
-        <NavLink to="/blog" onClick={close}>
-          Blog
-        </NavLink>
-        <a className="pill-btn nav-links-cta" href={`${import.meta.env.BASE_URL}Gayathri_RK_Resume.pdf`} download onClick={close}>
+        {NAV_LINKS.map((l) =>
+          l.hash ? (
+            <Link to={l.to} key={l.label} onClick={close}>
+              {l.label}
+            </Link>
+          ) : (
+            <NavLink to={l.to} key={l.label} onClick={close}>
+              {l.label}
+            </NavLink>
+          ),
+        )}
+        <a className="pill-btn nav-links-cta" href={RESUME_URL} download onClick={close}>
           <DownloadIcon />
           Download Resume
         </a>
       </nav>
 
-      <a className="pill-btn nav-cta-desktop" href={`${import.meta.env.BASE_URL}Gayathri_RK_Resume.pdf`} download>
+      <a className="pill-btn nav-cta-desktop" href={RESUME_URL} download>
         <DownloadIcon />
         Resume
       </a>
