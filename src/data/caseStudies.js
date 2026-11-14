@@ -316,7 +316,7 @@ const caseStudies = {
     category: 'Internal tool · Search & AI',
     summary:
       'A self-contained assistant that sits on top of the content QC tool and answers SOP questions in plain language, with the right ticket routing, tables and reference images, without leaving the page.',
-    demoUrl: '/playground/sop-assistant.html',
+    demoUrl: `${import.meta.env.BASE_URL}playground/sop-assistant.html`,
     meta: [
       { label: 'Type', value: 'Side project · internal tool' },
       { label: 'Runs as', value: 'Browser userscript' },

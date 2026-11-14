@@ -50,13 +50,13 @@ function Nav() {
         <NavLink to="/blog" onClick={close}>
           Blog
         </NavLink>
-        <a className="pill-btn nav-links-cta" href="/Gayathri_RK_Resume.pdf" download onClick={close}>
+        <a className="pill-btn nav-links-cta" href={`${import.meta.env.BASE_URL}Gayathri_RK_Resume.pdf`} download onClick={close}>
           <DownloadIcon />
           Download Resume
         </a>
       </nav>
 
-      <a className="pill-btn nav-cta-desktop" href="/Gayathri_RK_Resume.pdf" download>
+      <a className="pill-btn nav-cta-desktop" href={`${import.meta.env.BASE_URL}Gayathri_RK_Resume.pdf`} download>
         <DownloadIcon />
         Resume
       </a>

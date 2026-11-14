@@ -6,7 +6,7 @@ const playground = [
     category: 'Internal tool · Search & AI',
     summary:
       'An in-page assistant that answers SOP questions in plain language, so analysts never leave the title they are reviewing.',
-    demoUrl: '/playground/sop-assistant.html',
+    demoUrl: `${import.meta.env.BASE_URL}playground/sop-assistant.html`,
   },
 ];
 
