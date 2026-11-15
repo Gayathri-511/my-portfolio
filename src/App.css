@@ -3111,12 +3111,27 @@ section {
   }
   .footer-nav {
     justify-content: center;
-    gap: 12px 28px;
-    font-size: 15px;
+    gap: 4px 12px;
+    font-size: 16px;
   }
   .footer-links {
     justify-content: center;
-    gap: 12px 24px;
+    gap: 4px 12px;
+    font-size: 15px;
+  }
+  /* 44px-tall tap areas with side padding, so a tap can't land on the neighbour */
+  .footer-nav a,
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 12px;
+  }
+  .footer-nav a:active,
+  .footer-links a:active {
+    background: var(--surface-2);
   }
 }
 
